@@ -22,7 +22,7 @@ public class TestMail {
     @Test
     public void testTextMail()
     {
-        mailClient.sendMail("nowcoderckl@sina.com","test1","hello world");
+        mailClient.sendMail("********@sina.com","test1","hello world");
     }
     @Test
     public void testHtmlMail()
@@ -31,6 +31,6 @@ public class TestMail {
         context.setVariable("username","sunday");
         String  content=templateEngine.process("/mail/demo",context);
         System.out.println(content);
-        mailClient.sendMail("nowcoderckl@sina.com","test2",content);
+        mailClient.sendMail("********@sina.com","test2",content);
     }
 }
