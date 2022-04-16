@@ -40,12 +40,14 @@ public class MapperTest {
     public void testInsertUser()
     {
         User user=new User();
-        user.setUsername("bob");
-        user.setPassword("123456");
-        user.setSalt("asdfaf");
+        user.setUsername("testckl");
+        String password="123456123";
+        user.setPassword(CommunityUtil.MD5(password));
+        user.setSalt("123");
         user.setEmail("123142134@qq.com");
         user.setHeaderUrl("http://www.nowcoder.com/101.png");
         user.setCreateTime(new Date());
+        user.setStatus(1);
 
         int rows=userMapper.insertUser(user);
         System.out.println(rows);
