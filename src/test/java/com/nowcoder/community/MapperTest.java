@@ -1,11 +1,14 @@
 package com.nowcoder.community;
 
 import com.nowcoder.community.dao.DiscussPostMapper;
+import com.nowcoder.community.dao.LoginTicketMapper;
 import com.nowcoder.community.dao.UserMapper;
 import com.nowcoder.community.entity.DiscussPost;
+import com.nowcoder.community.entity.LoginTicket;
 import com.nowcoder.community.entity.Page;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.service.DiscussPostService;
+import com.nowcoder.community.util.CommunityUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -86,5 +89,32 @@ public class MapperTest {
         System.out.println(page.getTotal());
         System.out.println(page.getTo());
         System.out.println(page.getFrom());
+    }
+    @Autowired
+    private LoginTicketMapper loginTicketMapper;
+    @Test
+    public void testInsertLoginticker()
+    {
+        LoginTicket loginTicket=new LoginTicket();
+        loginTicket.setUserId(101);
+        loginTicket.setTicket("abc");
+        loginTicket.setStatus(0);
+        loginTicket.setExpired(new Date(System.currentTimeMillis()+1000*60));
+        loginTicketMapper.insertLoginTicket(loginTicket);
+    }
+    @Test
+    public void testSelectAndUpdateLoginTicket()
+    {
+        System.out.println(loginTicketMapper.selectByTicket("abc"));
+        loginTicketMapper.updateStatus("abc",1);
+        System.out.println(loginTicketMapper.selectByTicket("abc"));
+    }
+    @Test
+    public void testPassword()
+    {
+        User user= userMapper.selectByName("20011207");
+        System.out.println(user.getPassword());
+        String s="123456";
+        System.out.println(CommunityUtil.MD5(s+user.getSalt()).equals(user.getPassword()));
     }
 }
