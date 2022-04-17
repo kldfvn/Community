@@ -119,4 +119,13 @@ public class MapperTest {
         String s="123456";
         System.out.println(CommunityUtil.MD5(s+user.getSalt()).equals(user.getPassword()));
     }
+    @Test
+    public void updatePassword()
+    {
+        //671921e0bea4a74068c452c2e41d91d1
+        User user=userMapper.selectByName("20011207");
+        System.out.println(user.getPassword());
+        userMapper.updatePassword(user.getId(),CommunityUtil.MD5("123456"+user.getSalt()));
+        System.out.println(user.getPassword());
+    }
 }

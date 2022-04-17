@@ -1,7 +1,6 @@
 package com.nowcoder.community.controller;
 
 import com.nowcoder.community.entity.User;
-import com.nowcoder.community.entity.UpdateUser;
 import com.nowcoder.community.service.UserService;
 import com.nowcoder.community.util.CommunityUtil;
 import com.nowcoder.community.util.HostHolder;
@@ -105,5 +104,70 @@ public class UserController {
         } catch (IOException e) {
             logger.error("读取图像失败"+e.getMessage());
         }
+    }
+    //    修改密码
+//    @RequestMapping(path = "/uploadpassword",method = RequestMethod.POST)
+//    public String uploadPassword(UpdateUser updateUser, Model model)
+//    {
+//        String oldPassword=updateUser.getOldpassword();
+//        String newPassword=updateUser.getNewpassword();
+//        String confirmPassword=updateUser.getConfirmPassword();
+//        System.out.println(oldPassword);
+//        System.out.println(newPassword);
+//        System.out.println(confirmPassword);
+//        User user=hostHolder.getUser();
+//        if(!user.getPassword().equals(CommunityUtil.MD5(oldPassword+user.getSalt())))
+//        {
+//            model.addAttribute("error1","密码错误");
+//            return "/site/setting";
+//        }
+//        if(newPassword.length()<4)
+//        {
+//            model.addAttribute("error2","密码长度不能小于4位!");
+//            return "/site/setting";
+//        }
+//        if(confirmPassword.length()<4)
+//        {
+//            model.addAttribute("error3","密码长度不能小于4位!");
+//            return "/site/setting";
+//        }
+//        if(!newPassword.equals(confirmPassword))
+//        {
+//            model.addAttribute("error3","两次输入的密码不一致!");
+//            return "/site/setting";
+//        }
+//        userService.updatePassword(user.getId(),CommunityUtil.MD5(newPassword+user.getSalt()));
+//        return "redirect:/index";
+//    }
+    @RequestMapping(path = "/uploadpassword",method = RequestMethod.POST)
+    public String uploadPassword(String oldPassword, String newPassword,String confirmPassword,Model model)
+    {
+        System.out.println(oldPassword);
+        System.out.println(newPassword);
+        System.out.println(confirmPassword);
+        User user=hostHolder.getUser();
+        if(!user.getPassword().equals(CommunityUtil.MD5(oldPassword+user.getSalt())))
+        {
+            model.addAttribute("error1","密码错误");
+            return "/site/setting";
+        }
+        if(newPassword.length()<4)
+        {
+            model.addAttribute("error2","密码长度不能小于4位!");
+            return "/site/setting";
+        }
+        if(confirmPassword.length()<4)
+        {
+            model.addAttribute("error3","密码长度不能小于4位!");
+            return "/site/setting";
+        }
+        if(!newPassword.equals(confirmPassword))
+        {
+            model.addAttribute("error3","两次输入的密码不一致!");
+            return "/site/setting";
+        }
+        userService.updatePassword(user.getId(),CommunityUtil.MD5(newPassword+user.getSalt()));
+        System.out.println("密码修改成功");
+        return "redirect:/index";
     }
 }
