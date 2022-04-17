@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -109,28 +110,16 @@ public class UserController {
     public String uploadPassword(String oldPassword, String newPassword,String confirmPassword,Model model)
     {
         User user=hostHolder.getUser();
-        if(!user.getPassword().equals(CommunityUtil.MD5(oldPassword+user.getSalt())))
+        Map<String,Object> map=userService.updatePassword(user.getId(),oldPassword,newPassword,confirmPassword);
+        if(map.isEmpty())
         {
-            model.addAttribute("error1","密码错误");
+            return "redirect:/logout";
+        }
+        else {
+            model.addAttribute("error1",map.get("error1"));
+            model.addAttribute("error2",map.get("error2"));
+            model.addAttribute("error3",map.get("error3"));
             return "/site/setting";
         }
-        if(newPassword.length()<4)
-        {
-            model.addAttribute("error2","密码长度不能小于4位!");
-            return "/site/setting";
-        }
-        if(confirmPassword.length()<4)
-        {
-            model.addAttribute("error3","密码长度不能小于4位!");
-            return "/site/setting";
-        }
-        if(!newPassword.equals(confirmPassword))
-        {
-            model.addAttribute("error3","两次输入的密码不一致!");
-            return "/site/setting";
-        }
-        userService.updatePassword(user.getId(),CommunityUtil.MD5(newPassword+user.getSalt()));
-        System.out.println("密码修改成功");
-        return "redirect:/logout";
     }
 }
