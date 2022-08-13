@@ -14,18 +14,18 @@ public class alphaservice {
     private alphdao alphDao;
 
     public alphaservice(){
-        System.out.println("shilihua alphaservice ");
+//        System.out.println("shilihua alphaservice ");
     }
     //构造器之后调用
     @PostConstruct
     public void init()
     {
-        System.out.println("init alphaservice");
+//        System.out.println("init alphaservice");
     }
     //销毁前调用
     @PreDestroy
     public void destory(){
-        System.out.println("xiaohui alphaservice");
+//        System.out.println("xiaohui alphaservice");
     }
     public String find(){
         return alphDao.select();
