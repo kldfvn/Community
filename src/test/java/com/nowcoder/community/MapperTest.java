@@ -2,11 +2,9 @@ package com.nowcoder.community;
 
 import com.nowcoder.community.dao.DiscussPostMapper;
 import com.nowcoder.community.dao.LoginTicketMapper;
+import com.nowcoder.community.dao.MessageMapper;
 import com.nowcoder.community.dao.UserMapper;
-import com.nowcoder.community.entity.DiscussPost;
-import com.nowcoder.community.entity.LoginTicket;
-import com.nowcoder.community.entity.Page;
-import com.nowcoder.community.entity.User;
+import com.nowcoder.community.entity.*;
 import com.nowcoder.community.service.CommentService;
 import com.nowcoder.community.service.DiscussPostService;
 import com.nowcoder.community.util.CommunityUtil;
@@ -136,5 +134,25 @@ public class MapperTest {
     public void testCommentService()
     {
         System.out.println(commentService.findCommentsByEntity(1,227,0,2));
+    }
+
+    @Autowired
+    private MessageMapper messageMapper;
+    @Test
+    public void testMessageMapper()
+    {
+        List<Message> messages=messageMapper.selectConversations(111,0,20);
+        for (Message message:messages)
+        {
+            System.out.println(message);
+        }
+        System.out.println(messageMapper.selectConversationCount(111));
+        List<Message> messages2=messageMapper.selectLetters("111_112",0,20);
+        for (Message message:messages2)
+        {
+            System.out.println(message);
+        }
+        System.out.println(messageMapper.selectLetterCount("111_112"));
+        System.out.println(messageMapper.selectLetterUnreadCount(131,"111_131"));
     }
 }
