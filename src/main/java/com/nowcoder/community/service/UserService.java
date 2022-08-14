@@ -39,7 +39,7 @@ public class UserService implements CommunityConstant {
     @Autowired
     LoginTicketMapper loginTicketMapper;
 
-    public User finduserById(int id)
+    public User findUserById(int id)
     {
         return userMapper.selectById(id);
     }

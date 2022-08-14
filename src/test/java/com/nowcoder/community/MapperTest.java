@@ -7,6 +7,7 @@ import com.nowcoder.community.entity.DiscussPost;
 import com.nowcoder.community.entity.LoginTicket;
 import com.nowcoder.community.entity.Page;
 import com.nowcoder.community.entity.User;
+import com.nowcoder.community.service.CommentService;
 import com.nowcoder.community.service.DiscussPostService;
 import com.nowcoder.community.util.CommunityUtil;
 import org.junit.jupiter.api.Test;
@@ -127,5 +128,13 @@ public class MapperTest {
         System.out.println(user.getPassword());
         userMapper.updatePassword(user.getId(),CommunityUtil.MD5("123456"+user.getSalt()));
         System.out.println(user.getPassword());
+    }
+    @Autowired
+    private CommentService commentService;
+
+    @Test
+    public void testCommentService()
+    {
+        System.out.println(commentService.findCommentsByEntity(1,227,0,2));
     }
 }
