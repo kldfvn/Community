@@ -75,24 +75,19 @@ public class MessageController {
         model.addAttribute("target", getLetterTarget(conversationId));
 
 //        设置已读
-        List<Integer> ids=getUnreadLetters(letterList);
-        if(!ids.isEmpty())
-        {
+        List<Integer> ids = getUnreadLetters(letterList);
+        if (!ids.isEmpty()) {
             messageService.readMessage(ids);
         }
 
         return "/site/letter-detail";
     }
 
-    private List<Integer> getUnreadLetters(List<Message> letters)
-    {
-        List<Integer> ids=new ArrayList<>();
-        if(letters!=null)
-        {
-            for (Message message:letters)
-            {
-                if(hostHolder.getUser().getId()==message.getToId()&&message.getStatus()==0)
-                {
+    private List<Integer> getUnreadLetters(List<Message> letters) {
+        List<Integer> ids = new ArrayList<>();
+        if (letters != null) {
+            for (Message message : letters) {
+                if (hostHolder.getUser().getId() == message.getToId() && message.getStatus() == 0) {
                     ids.add(message.getId());
                 }
             }
