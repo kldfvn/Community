@@ -13,7 +13,8 @@
     </sql>
 
     <select id="selectCommentsByEntity" resultType="Comment">
-        select <include refid="selectFields"></include>
+        select
+        <include refid="selectFields"></include>
         from comment
         where status = 0
         and entity_type = #{entityType}
@@ -28,6 +29,11 @@
         where status = 0
           and entity_type = #{entityType}
           and entity_id = #{entityId}
+    </select>
+    <select id="selectCommentById" resultType="com.nowcoder.community.entity.Comment">
+        select (<include refid="selectFields"></include>)
+        from comment
+        where id=#{id}
     </select>
 
     <insert id="insertComment" parameterType="Comment">
