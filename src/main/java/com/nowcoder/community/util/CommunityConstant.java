@@ -27,4 +27,6 @@ public interface CommunityConstant {
     String TOPIC_FOLLOW="follow";
 //    系统用户Id
     int SYSTEM_USER_ID=1;
+//    主题
+    String TOPIC_PUBLISH="publish";
 }
