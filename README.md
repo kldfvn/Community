@@ -21,3 +21,4 @@ NowCoder community
   - 2022-08-17 Kafka实现系统通知
   - 2022-08-18 搜索功能接口 (ElasticSearch版本问题后续有时间再完善实际功能)
   - 2022-08-18 SpringSecurity实现权限控制
+  - 2022-08-19 置顶删除加精功能

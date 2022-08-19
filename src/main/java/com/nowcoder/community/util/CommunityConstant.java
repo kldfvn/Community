@@ -29,6 +29,8 @@ public interface CommunityConstant {
     int SYSTEM_USER_ID = 1;
     //    主题
     String TOPIC_PUBLISH = "publish";
+    //    主题
+    String TOPIC_DELETE = "delete";
     //    权限：普通用户
     String AUTHORITY_USER = "user";
     //    权限：管理员
