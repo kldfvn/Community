@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface DiscussPostMapper {
 
-    List<DiscussPost> selectDiscussPost(int userId, int offset, int limit);
+    List<DiscussPost> selectDiscussPost(int userId, int offset, int limit,int orderMode);
 
     //    动态拼接 只有一个参数 需要参数注解@Param
     int selectDiscussPostRows(@Param("userId") int userId);
@@ -23,4 +23,6 @@ public interface DiscussPostMapper {
     int updateStatus(int id,int status);
 
     int updateType(int id, int type);
+
+    int updateScore(int id,double score);
 }
