@@ -25,10 +25,12 @@ public interface CommunityConstant {
     String TOPIC_LIKE = "like";
     //    关注
     String TOPIC_FOLLOW = "follow";
-    //    系统用户Id
-    int SYSTEM_USER_ID = 1;
     //    主题
     String TOPIC_PUBLISH = "publish";
+    //    分享
+    String TOPIC_SHARE = "share";
+    //    系统用户Id
+    int SYSTEM_USER_ID = 1;
     //    主题
     String TOPIC_DELETE = "delete";
     //    权限：普通用户
