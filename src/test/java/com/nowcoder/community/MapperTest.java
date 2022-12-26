@@ -39,8 +39,8 @@ public class MapperTest {
     public void testInsertUser()
     {
         User user=new User();
-        user.setUsername("testckl");
-        String password="123456123";
+        user.setUsername("20011207");
+        String password="20011207";
         user.setPassword(CommunityUtil.MD5(password));
         user.setSalt("123");
         user.setEmail("123142134@qq.com");
